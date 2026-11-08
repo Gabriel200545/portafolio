@@ -1,0 +1,2285 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabriel | Full-Stack & Data/AI Software Engineer Portfolio</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Chart.js for Interactive Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Canvas Confetti for Interactive Sales / Success Effects -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+            },
+            accent: {
+              500: '#6366f1',
+              600: '#4f46e5',
+            },
+            dark: {
+              900: '#0B0F17',
+              850: '#101622',
+              800: '#161F30',
+              700: '#1E293B',
+              600: '#334155',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0B0F17;
+      color: #E2E8F0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .glass-card {
+      background: rgba(22, 31, 48, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(99, 102, 241, 0.2);
+    }
+    .glass-nav {
+      background: rgba(11, 15, 23, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .glow-green {
+      box-shadow: 0 0 25px -5px rgba(34, 197, 94, 0.3);
+    }
+    .glow-indigo {
+      box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.3);
+    }
+    .code-block {
+      background: #090D14;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0F17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E293B;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+    .terminal-scroll::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .terminal-scroll::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-indigo-500 selection:text-white">
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-emerald-400 flex items-center justify-center font-bold text-lg text-white shadow-lg shadow-indigo-500/20">
+          G
+        </div>
+        <div>
+          <div class="font-bold text-white tracking-wide text-lg flex items-center gap-2">
+            Gabriel <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono">dev</span>
+          </div>
+          <div class="text-xs text-slate-400">Ingeniería en Sistemas • Software & Data</div>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-slate-300">
+        <a href="#demos" class="flex items-center gap-1.5 text-emerald-400 font-semibold hover:text-emerald-300 transition-colors">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Demos en Vivo
+        </a>
+        <a href="#ecosistemas" class="hover:text-indigo-400 transition-colors">Ecosistemas</a>
+        <a href="#proyectos" class="hover:text-indigo-400 transition-colors">Proyectos Clave</a>
+        <a href="#arquitectura" class="hover:text-indigo-400 transition-colors">Arquitectura</a>
+        <a href="#habilidades" class="hover:text-indigo-400 transition-colors">Habilidades</a>
+        <a href="#contacto" class="hover:text-indigo-400 transition-colors">Contacto</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/Gabriel200545" target="_blank" class="flex items-center gap-2 text-sm bg-slate-800/80 hover:bg-slate-700 text-white px-4 py-2 rounded-xl border border-slate-700 transition">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          <span>GitHub</span>
+        </a>
+        <a href="#contacto" class="hidden sm:flex items-center gap-2 text-sm bg-gradient-to-r from-indigo-600 to-emerald-500 hover:from-indigo-500 hover:to-emerald-400 text-white px-4 py-2 rounded-xl font-medium shadow-md transition">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>Contactar</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-36 pb-20 overflow-hidden">
+    <!-- Background glowing orbs -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/80 text-xs font-medium text-slate-300">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Disponible para Desarrollo Full-Stack & Proyectos de Datos / IA
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
+            Ingeniería de Software de Alto Impacto, <span class="bg-gradient-to-r from-indigo-400 via-sky-300 to-emerald-400 bg-clip-text text-transparent">Multiplataforma</span> & <span class="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">Machine Learning</span>
+          </h1>
+
+          <p class="text-lg text-slate-300 leading-relaxed max-w-2xl">
+            Desarrollo soluciones empresariales robustas integrando arquitecturas modernas en <strong>.NET Core & Microservicios</strong>, aplicaciones multiplataforma con <strong>Flutter</strong>, y motores predictivos de <strong>Data Mining & Gobierno de Datos</strong> con Python y Machine Learning.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#demos" class="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-semibold shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5">
+              <i data-lucide="play-circle" class="w-5 h-5"></i>
+              Probar Demos en Vivo
+            </a>
+            <a href="#proyectos" class="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-lg shadow-indigo-600/30 transition">
+              <i data-lucide="folder-git-2" class="w-5 h-5"></i>
+              Explorar Proyectos
+            </a>
+            <a href="#arquitectura" class="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold transition">
+              <i data-lucide="layers" class="w-5 h-5"></i>
+              Ver Arquitecturas
+            </a>
+          </div>
+
+          <!-- Quick badges -->
+          <div class="pt-6 border-t border-slate-800/80 flex flex-wrap gap-2 text-xs text-slate-400">
+            <span class="px-3 py-1 rounded-lg bg-slate-800/60 border border-slate-700/60 font-mono">.NET 8 / C#</span>
+            <span class="px-3 py-1 rounded-lg bg-slate-800/60 border border-slate-700/60 font-mono">Flutter / Dart</span>
+            <span class="px-3 py-1 rounded-lg bg-slate-800/60 border border-slate-700/60 font-mono">Python / XGBoost</span>
+            <span class="px-3 py-1 rounded-lg bg-slate-800/60 border border-slate-700/60 font-mono">Azure SQL & DW</span>
+            <span class="px-3 py-1 rounded-lg bg-slate-800/60 border border-slate-700/60 font-mono">Microservicios</span>
+            <span class="px-3 py-1 rounded-lg bg-slate-800/60 border border-slate-700/60 font-mono">PowerBI Embedded</span>
+          </div>
+        </div>
+
+        <!-- Hero Metrics Card -->
+        <div class="lg:col-span-5">
+          <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6 relative overflow-hidden border border-slate-700/60">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-700/60">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                <span class="text-xs font-mono text-slate-400 ml-2">portfolio-metrics.json</span>
+              </div>
+              <span class="text-xs px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 font-mono font-semibold">2026 Ready</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                <div class="text-xs text-slate-400 font-medium">Impacto Financiero Proyectado</div>
+                <div class="text-2xl font-extrabold text-emerald-400 mt-1">$164k USD</div>
+                <div class="text-xs text-slate-500 mt-0.5">Ahorro anual en pérdidas (AgroVerde)</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                <div class="text-xs text-slate-400 font-medium">Capacidad Predictiva (ROC-AUC)</div>
+                <div class="text-2xl font-extrabold text-indigo-400 mt-1">0.9481</div>
+                <div class="text-xs text-slate-500 mt-0.5">XGBoost & LightGBM sin Data Leakage</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                <div class="text-xs text-slate-400 font-medium">Ecosistema ERP Empresarial</div>
+                <div class="text-2xl font-extrabold text-sky-400 mt-1">4 Capas</div>
+                <div class="text-xs text-slate-500 mt-0.5">Flutter, WebApi, Microservicios, PowerBI</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                <div class="text-xs text-slate-400 font-medium">Gobernanza & Calidad</div>
+                <div class="text-2xl font-extrabold text-teal-400 mt-1">100%</div>
+                <div class="text-xs text-slate-500 mt-0.5">Trazabilidad legal & 6 dimensiones</div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-indigo-950/30 border border-indigo-800/40 space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono text-indigo-300">
+                <span>ESTADO DEL WORKSPACE</span>
+                <span class="text-emerald-400 font-bold">ORGANIZADO & CLEAN</span>
+              </div>
+              <div class="text-xs text-slate-300 font-mono leading-relaxed">
+                ✔ 01_Distribuidora_Walter_ERP (Mobile, API, Microservices, Web)<br>
+                ✔ 02_AgroVerde_Data_Mining (Data Warehouse, ML, Quality, C#)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 🎮 SECCIÓN DE DEMOS FUNCIONALES INTERACTIVOS (NUEVA)           -->
+  <!-- ============================================================== -->
+  <section id="demos" class="py-20 border-t border-slate-800/80 bg-slate-900/60 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold mb-3">
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+          ENTORNO DE SIMULACIÓN INTERACTIVO
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Demos Funcionales de los Proyectos</h2>
+        <p class="text-slate-400 mt-3 text-base">
+          Prueba en tiempo real la lógica de negocio de los sistemas: desde el <strong>Terminal Punto de Venta (POS) y contratos API</strong> de Distribuidora Walter, hasta la <strong>inferencia predictiva de Machine Learning</strong> y auditoría de calidad de datos de AgroVerde.
+        </p>
+
+        <!-- Ecosystem Switcher Tabs -->
+        <div class="flex justify-center mt-8">
+          <div class="p-1.5 rounded-2xl bg-slate-950 border border-slate-800 flex flex-wrap gap-2">
+            <button onclick="switchDemoEcosystem('walter')" id="btn-tab-walter" class="px-6 py-2.5 rounded-xl text-sm font-semibold bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 transition flex items-center gap-2">
+              <i data-lucide="store" class="w-4 h-4"></i>
+              <span>Distribuidora Walter (ERP & API)</span>
+            </button>
+            <button onclick="switchDemoEcosystem('agroverde')" id="btn-tab-agroverde" class="px-6 py-2.5 rounded-xl text-sm font-semibold text-slate-400 hover:text-white transition flex items-center gap-2">
+              <i data-lucide="brain" class="w-4 h-4"></i>
+              <span>AgroVerde (Predictor ML & C# Engine)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================== -->
+      <!-- DEMO 1: DISTRIBUIDORA WALTER (ERP, POS, LOTES, API)        -->
+      <!-- ========================================================== -->
+      <div id="demo-walter-container" class="space-y-8">
+        
+        <!-- Sub-tabs bar -->
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div class="flex gap-2 text-xs font-medium">
+            <button onclick="switchWalterSubTab('pos')" id="w-btn-pos" class="px-4 py-2 rounded-lg bg-indigo-600 text-white transition flex items-center gap-1.5">
+              <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i> 1. Terminal POS & Facturación
+            </button>
+            <button onclick="switchWalterSubTab('lotes')" id="w-btn-lotes" class="px-4 py-2 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5">
+              <i data-lucide="box" class="w-3.5 h-3.5"></i> 2. Control de Lotes & Vencimiento
+            </button>
+            <button onclick="switchWalterSubTab('api')" id="w-btn-api" class="px-4 py-2 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5">
+              <i data-lucide="terminal" class="w-3.5 h-3.5"></i> 3. API & Swagger Playground
+            </button>
+          </div>
+          <span class="text-xs text-slate-400 font-mono hidden sm:inline-block">Simulación de lógica en Frontend & Backend</span>
+        </div>
+
+        <!-- 1.1 SUBTAB POS & FACTURACIÓN -->
+        <div id="walter-sub-pos" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <!-- Catálogo de productos interactivo -->
+          <div class="lg:col-span-7 space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                  <i data-lucide="package" class="w-5 h-5 text-indigo-400"></i>
+                  Catálogo de Productos en Bodega
+                </h3>
+                <p class="text-xs text-slate-400">Haz clic en <strong>+ Agregar</strong> para añadir al carrito de despacho.</p>
+              </div>
+              <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-mono">Bodega Central</span>
+            </div>
+
+            <!-- Product Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="pos-products-list">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+          <!-- Carrito de Compras & Emisión de Comprobante -->
+          <div class="lg:col-span-5">
+            <div class="glass-card rounded-2xl p-6 border border-slate-700/80 space-y-5">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="receipt" class="w-5 h-5 text-emerald-400"></i>
+                  <h4 class="font-bold text-white">Orden de Venta Actual</h4>
+                </div>
+                <span id="cart-item-count" class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-mono font-semibold">0 items</span>
+              </div>
+
+              <!-- Cliente selector -->
+              <div class="space-y-1">
+                <label class="text-xs text-slate-400 font-medium">Cliente Registrado:</label>
+                <select id="pos-customer-select" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-indigo-500">
+                  <option value="Supermercado La Unión - RUC: J031000004921">Supermercado La Unión (RUC: J031000004921)</option>
+                  <option value="Abarrotes Don Pepe - RUC: 0012508930001K">Abarrotes Don Pepe (RUC: 0012508930001K)</option>
+                  <option value="Comercializadora del Valle - RUC: J031998822110">Comercializadora del Valle (RUC: J031998822110)</option>
+                </select>
+              </div>
+
+              <!-- Cart items container -->
+              <div id="pos-cart-items" class="space-y-2 max-h-56 overflow-y-auto pr-1">
+                <div class="text-center py-8 text-xs text-slate-500">
+                  <i data-lucide="shopping-bag" class="w-8 h-8 mx-auto mb-2 text-slate-600"></i>
+                  El carrito está vacío. Agrega productos del catálogo.
+                </div>
+              </div>
+
+              <!-- Totales -->
+              <div class="pt-3 border-t border-slate-800 space-y-1.5 text-xs">
+                <div class="flex justify-between text-slate-400">
+                  <span>Subtotal:</span>
+                  <span id="pos-subtotal" class="font-mono text-slate-200">$0.00</span>
+                </div>
+                <div class="flex justify-between text-slate-400">
+                  <span>IVA (15%):</span>
+                  <span id="pos-iva" class="font-mono text-slate-200">$0.00</span>
+                </div>
+                <div class="flex justify-between text-sm font-bold text-white pt-1 border-t border-slate-800/60">
+                  <span>Total Facturado:</span>
+                  <span id="pos-total" class="font-mono text-emerald-400">$0.00</span>
+                </div>
+              </div>
+
+              <!-- Emit button -->
+              <button onclick="submitPosSale()" id="btn-emit-sale" class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                <i data-lucide="printer" class="w-4 h-4"></i>
+                Completar Venta & Emitir Factura PDF
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 1.2 SUBTAB LOTES & VENCIMIENTO -->
+        <div id="walter-sub-lotes" class="hidden space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                <i data-lucide="calendar-alert" class="w-5 h-5 text-indigo-400"></i>
+                Monitor de Lotes & Trazabilidad de Vencimientos
+              </h3>
+              <p class="text-xs text-slate-400">Vista basada en <code class="text-indigo-300">inventario_lote_view.dart</code> de la app Flutter.</p>
+            </div>
+            <!-- Search & filters -->
+            <div class="flex items-center gap-2">
+              <input type="text" id="lote-search" oninput="filterLotesTable()" placeholder="Buscar producto o lote..." class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+              <select id="lote-status-filter" onchange="filterLotesTable()" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-indigo-500">
+                <option value="all">Todos los estados</option>
+                <option value="vigente">🟢 Vigente</option>
+                <option value="por_vencer">🟡 Por Vencer (&lt; 30 días)</option>
+                <option value="vencido">🔴 Crítico / Vencido</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Lotes Table -->
+          <div class="glass-card rounded-xl overflow-hidden border border-slate-800 overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-900/90 text-slate-400 font-mono uppercase tracking-wider border-b border-slate-800">
+                <tr>
+                  <th class="py-3 px-4">Código Lote</th>
+                  <th class="py-3 px-4">Producto</th>
+                  <th class="py-3 px-4">Bodega</th>
+                  <th class="py-3 px-4">Stock</th>
+                  <th class="py-3 px-4">Ingreso</th>
+                  <th class="py-3 px-4">Vencimiento</th>
+                  <th class="py-3 px-4">Estado</th>
+                  <th class="py-3 px-4 text-right">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="lotes-table-body" class="divide-y divide-slate-800/80 font-mono text-slate-300">
+                <!-- Dynamically generated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 1.3 SUBTAB API & SWAGGER PLAYGROUND -->
+        <div id="walter-sub-api" class="hidden space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                <i data-lucide="play" class="w-5 h-5 text-indigo-400"></i>
+                Consola Interactiva de API & Microservicios
+              </h3>
+              <p class="text-xs text-slate-400">Simulación directa de peticiones HTTP contra la arquitectura ASP.NET Core.</p>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono">
+              Swagger v1 Compatible
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Endpoints list -->
+            <div class="lg:col-span-5 space-y-2">
+              <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Selecciona un Endpoint:</div>
+              
+              <button onclick="selectApiEndpoint('getProductos')" id="ep-btn-getProductos" class="w-full text-left p-3 rounded-xl bg-slate-900 hover:bg-slate-850 border border-indigo-500/50 flex items-center justify-between text-xs transition">
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-mono font-bold">GET</span>
+                  <span class="font-mono text-slate-200">/api/Productos</span>
+                </div>
+                <span class="text-slate-400 text-xs">Catálogo & Stock</span>
+              </button>
+
+              <button onclick="selectApiEndpoint('postVenta')" id="ep-btn-postVenta" class="w-full text-left p-3 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 flex items-center justify-between text-xs transition">
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono font-bold">POST</span>
+                  <span class="font-mono text-slate-200">/api/Venta/Crear</span>
+                </div>
+                <span class="text-slate-400 text-xs">Transacción POS</span>
+              </button>
+
+              <button onclick="selectApiEndpoint('getAuditoria')" id="ep-btn-getAuditoria" class="w-full text-left p-3 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 flex items-center justify-between text-xs transition">
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-mono font-bold">GET</span>
+                  <span class="font-mono text-slate-200">/api/Auditoria</span>
+                </div>
+                <span class="text-slate-400 text-xs">Registro de Cambios</span>
+              </button>
+
+              <button onclick="selectApiEndpoint('getPowerBIToken')" id="ep-btn-getPowerBIToken" class="w-full text-left p-3 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 flex items-center justify-between text-xs transition">
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono font-bold">POST</span>
+                  <span class="font-mono text-slate-200">/api/Reports/embed-token</span>
+                </div>
+                <span class="text-slate-400 text-xs">Token PowerBI</span>
+              </button>
+            </div>
+
+            <!-- Request / Response Runner -->
+            <div class="lg:col-span-7 space-y-4">
+              <div class="glass-card rounded-2xl p-5 border border-slate-700/80 space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                  <div class="flex items-center gap-2 font-mono text-xs">
+                    <span id="api-req-method" class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-bold">GET</span>
+                    <span id="api-req-url" class="text-slate-200">https://api.distribuidorawalter.com/api/Productos</span>
+                  </div>
+                  <button onclick="executeApiTest()" id="btn-execute-api" class="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center gap-1.5 transition">
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                    Enviar Request
+                  </button>
+                </div>
+
+                <!-- Headers Preview -->
+                <div class="space-y-1">
+                  <div class="text-xs text-slate-400 font-mono">Authorization: <span class="text-indigo-400">Bearer eyJhbGciOiJIUzI1Ni...[JWT Token de Gerente]</span></div>
+                  <div class="text-xs text-slate-400 font-mono">Content-Type: <span class="text-slate-300">application/json</span></div>
+                </div>
+
+                <!-- Payload / Body if applicable -->
+                <div id="api-payload-container" class="hidden space-y-1">
+                  <span class="text-xs text-slate-400 font-mono">Request Payload (JSON):</span>
+                  <pre id="api-req-payload" class="code-block rounded-xl p-3 font-mono text-xs text-amber-300 overflow-x-auto max-h-36"></pre>
+                </div>
+
+                <!-- Response output -->
+                <div class="space-y-1 pt-2 border-t border-slate-800">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-mono text-slate-400">Server Response:</span>
+                    <span id="api-resp-status" class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">200 OK (32ms)</span>
+                  </div>
+                  <pre id="api-resp-json" class="code-block rounded-xl p-4 font-mono text-xs text-emerald-400 overflow-x-auto max-h-56 terminal-scroll leading-relaxed">
+// Haz clic en "Enviar Request" para ejecutar el endpoint.
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ========================================================== -->
+      <!-- DEMO 2: AGROVERDE (DATA MINING, XGBOOST, C# ENGINE)        -->
+      <!-- ========================================================== -->
+      <div id="demo-agroverde-container" class="hidden space-y-8">
+        
+        <!-- Sub-tabs bar -->
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div class="flex gap-2 text-xs font-medium">
+            <button onclick="switchAgroSubTab('predictor')" id="a-btn-pred" class="px-4 py-2 rounded-lg bg-emerald-600 text-white transition flex items-center gap-1.5">
+              <i data-lucide="cpu" class="w-3.5 h-3.5"></i> 1. Inferencia Predictiva XGBoost en Tiempo Real
+            </button>
+            <button onclick="switchAgroSubTab('calidad')" id="a-btn-calidad" class="px-4 py-2 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> 2. Motor C# de Calidad & Anti-Leakage
+            </button>
+          </div>
+          <span class="text-xs text-slate-400 font-mono hidden sm:inline-block">Caso 6: Rendimiento Hortícola</span>
+        </div>
+
+        <!-- 2.1 SUBTAB PREDICTOR XGBOOST -->
+        <div id="agro-sub-predictor" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <!-- Controles de entrada de la parcela -->
+          <div class="lg:col-span-7 space-y-5">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                  <i data-lucide="sliders" class="w-5 h-5 text-emerald-400"></i>
+                  Parámetros de Parcela-Ciclo en Campo
+                </h3>
+                <p class="text-xs text-slate-400">Modifica los indicadores agronómicos para evaluar la respuesta del modelo entrenado.</p>
+              </div>
+            </div>
+
+            <!-- Presets rápidos -->
+            <div class="flex flex-wrap gap-2 text-xs">
+              <span class="text-slate-400 self-center">Escenarios Predefinidos:</span>
+              <button onclick="loadAgroPreset('healthy')" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-emerald-500/30 text-emerald-400 transition">
+                🟢 Parcela Saludable
+              </button>
+              <button onclick="loadAgroPreset('drought')" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-amber-500/30 text-amber-400 transition">
+                🟡 Déficit Hídrico & Calor
+              </button>
+              <button onclick="loadAgroPreset('critical')" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-red-500/30 text-red-400 transition">
+                🔴 Riesgo Crítico de Pérdida
+              </button>
+            </div>
+
+            <!-- Form Sliders -->
+            <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-4 text-xs">
+              
+              <!-- Slider 1: Precipitación -->
+              <div>
+                <div class="flex justify-between text-slate-300 font-medium mb-1">
+                  <span>Precipitación Acumulada del Ciclo:</span>
+                  <span id="val-precipitacion" class="font-mono text-emerald-400 font-bold">280 mm</span>
+                </div>
+                <input type="range" min="60" max="450" value="280" id="range-precipitacion" oninput="runXGBoostInference()" class="w-full accent-emerald-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500"><span>60 mm (Sequía)</span><span>450 mm (Óptimo)</span></div>
+              </div>
+
+              <!-- Slider 2: Temperatura -->
+              <div>
+                <div class="flex justify-between text-slate-300 font-medium mb-1">
+                  <span>Temperatura Promedio en Floración:</span>
+                  <span id="val-temp" class="font-mono text-emerald-400 font-bold">24.5 °C</span>
+                </div>
+                <input type="range" min="15" max="38" step="0.5" value="24.5" id="range-temp" oninput="runXGBoostInference()" class="w-full accent-emerald-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500"><span>15 °C</span><span>38 °C (Estrés térmico)</span></div>
+              </div>
+
+              <!-- Slider 3: Déficit Hídrico -->
+              <div>
+                <div class="flex justify-between text-slate-300 font-medium mb-1">
+                  <span>Déficit Hídrico del Suelo (%):</span>
+                  <span id="val-deficit" class="font-mono text-emerald-400 font-bold">18 %</span>
+                </div>
+                <input type="range" min="0" max="65" value="18" id="range-deficit" oninput="runXGBoostInference()" class="w-full accent-emerald-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500"><span>0% (Capacidad de campo)</span><span>65% (Punto de marchitez)</span></div>
+              </div>
+
+              <!-- Slider 4: Incidencia de Plagas -->
+              <div>
+                <div class="flex justify-between text-slate-300 font-medium mb-1">
+                  <span>Incidencia Fitosanitaria / Plagas (%):</span>
+                  <span id="val-plagas" class="font-mono text-emerald-400 font-bold">5 %</span>
+                </div>
+                <input type="range" min="0" max="50" value="5" id="range-plagas" oninput="runXGBoostInference()" class="w-full accent-emerald-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500"><span>0% (Limpio)</span><span>50% (Infestación severa)</span></div>
+              </div>
+
+              <!-- Slider 5: Días de Ciclo -->
+              <div>
+                <div class="flex justify-between text-slate-300 font-medium mb-1">
+                  <span>Días de Ciclo Vegetativo Transcurridos:</span>
+                  <span id="val-dias" class="font-mono text-emerald-400 font-bold">65 días</span>
+                </div>
+                <input type="range" min="20" max="120" value="65" id="range-dias" oninput="runXGBoostInference()" class="w-full accent-emerald-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500"><span>20 días (Brote)</span><span>120 días (Cosecha)</span></div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Panel de Inferencia y Recomendación -->
+          <div class="lg:col-span-5 space-y-5">
+            <div class="glass-card rounded-2xl p-6 border border-slate-700/80 space-y-5">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="gauge" class="w-5 h-5 text-emerald-400"></i>
+                  <h4 class="font-bold text-white">Score de Riesgo Predictivo</h4>
+                </div>
+                <span class="text-xs font-mono text-slate-400">ROC-AUC: 0.9481</span>
+              </div>
+
+              <!-- Gauge Visualizer -->
+              <div class="text-center py-2 space-y-3">
+                <div class="relative w-44 h-44 mx-auto flex items-center justify-center">
+                  <!-- Circular progress simulation with SVG -->
+                  <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#1E293B" stroke-width="8" fill="none" />
+                    <circle id="gauge-circle" cx="50" cy="50" r="40" stroke="#22c55e" stroke-width="8" fill="none" stroke-dasharray="251.2" stroke-dashoffset="210" stroke-linecap="round" class="transition-all duration-500" />
+                  </svg>
+                  <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <span id="pred-risk-percentage" class="text-3xl font-extrabold text-white font-mono">16.4%</span>
+                    <span class="text-[10px] text-slate-400 font-mono">Prob. Pérdida</span>
+                  </div>
+                </div>
+
+                <!-- Status badge -->
+                <div id="pred-status-badge" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+                  🟢 RENDIMIENTO NORMAL / BAJO RIESGO
+                </div>
+              </div>
+
+              <!-- Feature Importance Breakdown -->
+              <div class="space-y-2 pt-3 border-t border-slate-800 text-xs">
+                <span class="text-slate-400 font-medium">Factores de Mayor Impacto (Simulación SHAP):</span>
+                <div class="space-y-1.5" id="shap-breakdown-list">
+                  <!-- Dynamic bars -->
+                </div>
+              </div>
+
+              <!-- Actionable Decision -->
+              <div id="pred-recommendation-box" class="p-3.5 rounded-xl bg-slate-900 border border-emerald-500/30 text-xs space-y-1">
+                <div class="flex items-center gap-2 font-bold text-emerald-400">
+                  <i data-lucide="check-circle" class="w-4 h-4"></i>
+                  Diagnóstico Agronómico Favorable
+                </div>
+                <p id="pred-recommendation-text" class="text-slate-300 text-[11px] leading-relaxed">
+                  Los parámetros de humedad y temperatura se encuentran dentro de las zonas óptimas del cultivo. Mantener monitoreo regular.
+                </p>
+                <div class="text-[10px] text-slate-500 font-mono pt-1">
+                  Valor económico estimado en parcela: <span class="text-slate-300 font-bold">$2,800.00 USD</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 2.2 SUBTAB MOTOR C# DE CALIDAD & GOBERNANZA -->
+        <div id="agro-sub-calidad" class="hidden space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                <i data-lucide="shield-alert" class="w-5 h-5 text-teal-400"></i>
+                Auditoría de Calidad (6 Dimensiones) & Blindaje Anti-Leakage
+              </h3>
+              <p class="text-xs text-slate-400">Simulación del pipeline <code class="text-teal-300">AgroVerde.Quality</code> y <code class="text-teal-300">AgroVerde.Governance</code> en C# .NET.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Selector de caso de prueba -->
+            <div class="lg:col-span-5 space-y-3">
+              <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Selecciona un Registro de Prueba:</div>
+
+              <button onclick="selectAuditCase('valid')" id="audit-btn-valid" class="w-full text-left p-3.5 rounded-xl bg-slate-900 border border-teal-500/50 flex flex-col gap-1 text-xs transition">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-teal-300">Caso 1: Registro 100% Conforme</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 font-mono">Aprobado</span>
+                </div>
+                <p class="text-slate-400 text-[11px]">Todos los atributos validados, consentimiento legal verificado, sin target leakage.</p>
+              </button>
+
+              <button onclick="selectAuditCase('leakage')" id="audit-btn-leakage" class="w-full text-left p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex flex-col gap-1 text-xs transition">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-red-300">Caso 2: Inyección de Target Leakage</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] bg-red-500/20 text-red-400 font-mono">Bloqueo Estricto</span>
+                </div>
+                <p class="text-slate-400 text-[11px]">El dataset incluye `rendimiento_ton_ha` o `fecha_carga` como predictor.</p>
+              </button>
+
+              <button onclick="selectAuditCase('nulls')" id="audit-btn-nulls" class="w-full text-left p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex flex-col gap-1 text-xs transition">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-amber-300">Caso 3: Incompletitud & Valores Nulos</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-400 font-mono">A Cuarentena</span>
+                </div>
+                <p class="text-slate-400 text-[11px]">Faltan lecturas de precipitación y tipo de suelo. El motor aísla el registro.</p>
+              </button>
+
+              <button onclick="runAuditExecution()" class="w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2">
+                <i data-lucide="play" class="w-4 h-4"></i>
+                Ejecutar Auditoría con Pipeline C#
+              </button>
+            </div>
+
+            <!-- Terminal output de ejecución C# -->
+            <div class="lg:col-span-7 space-y-4">
+              <div class="glass-card rounded-2xl p-5 border border-slate-700/80 space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                  <div class="flex items-center gap-2 font-mono text-xs text-slate-300">
+                    <i data-lucide="terminal" class="w-4 h-4 text-teal-400"></i>
+                    <span>AgroVerde.ConsoleApp.exe [Log de Auditoría]</span>
+                  </div>
+                  <span id="audit-log-status" class="text-xs font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Listo</span>
+                </div>
+
+                <!-- 6 Dimensions Matrix Preview -->
+                <div class="grid grid-cols-3 gap-2 text-[11px] font-mono" id="audit-dimensions-grid">
+                  <div class="p-2 rounded bg-slate-900 border border-slate-800">Completitud: <span class="text-emerald-400">98.2%</span></div>
+                  <div class="p-2 rounded bg-slate-900 border border-slate-800">Validez: <span class="text-emerald-400">Conforme</span></div>
+                  <div class="p-2 rounded bg-slate-900 border border-slate-800">Unicidad: <span class="text-emerald-400">100%</span></div>
+                  <div class="p-2 rounded bg-slate-900 border border-slate-800">Consistencia: <span class="text-emerald-400">Válida</span></div>
+                  <div class="p-2 rounded bg-slate-900 border border-slate-800">Exactitud: <span class="text-emerald-400">Aprobada</span></div>
+                  <div class="p-2 rounded bg-slate-900 border border-slate-800">Oportunidad: <span class="text-emerald-400">En tiempo</span></div>
+                </div>
+
+                <!-- Terminal console -->
+                <pre id="audit-terminal-log" class="code-block rounded-xl p-4 font-mono text-xs text-teal-400 overflow-x-auto max-h-52 terminal-scroll leading-relaxed">
+// Selecciona un caso de prueba y haz clic en "Ejecutar Auditoría con Pipeline C#"
+                </pre>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ECOSISTEMAS EMPRESARIALES -->
+  <section id="ecosistemas" class="py-20 border-t border-slate-800/80 bg-slate-900/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs uppercase tracking-widest text-indigo-400 font-semibold mb-2">Grandes Iniciativas de Ingeniería</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-white">Ecosistemas Principales en Producción</p>
+        <p class="text-slate-400 mt-3 text-base">
+          Proyectos integrales concebidos con estándares de arquitectura enterprise, patrones de diseño limpios y validación empírica.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Card 1: Distribuidora Walter -->
+        <div class="glass-card rounded-2xl p-8 border border-slate-700/60 flex flex-col justify-between relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-500/20 transition-all"></div>
+          
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+                  <i data-lucide="store" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-white">Distribuidora Walter</h3>
+                  <div class="text-xs text-indigo-400 font-mono">Ecosistema ERP & Microservicios Multiplataforma</div>
+                </div>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">Full-Stack ERP</span>
+            </div>
+
+            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              Solución integral para gestión de bodegas, inventarios por lote con fechas de caducidad, compras, ventas POS, devoluciones, generación de facturas y órdenes en PDF, control de roles y permisos (Gerente, Vendedor, Administrador), y cuadros de mando ejecutivos con PowerBI embebido.
+            </p>
+
+            <div class="space-y-3 mb-6">
+              <div class="flex items-start gap-2.5 text-xs text-slate-300">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span><strong>Flutter Multiplataforma:</strong> Aplicación compilable a Android, iOS, Windows y Web con más de 20 vistas interactivas y arquitectura modular.</span>
+              </div>
+              <div class="flex items-start gap-2.5 text-xs text-slate-300">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span><strong>ASP.NET Core Web API:</strong> Autenticación JWT, Identity, Claims personalizadas, Azure SQL, EF Core, trazabilidad con tabla Auditoría y Repositorios desacoplados.</span>
+              </div>
+              <div class="flex items-start gap-2.5 text-xs text-slate-300">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span><strong>Microservicios (Stack 2026):</strong> Transición moderna con endpoints Swagger/OpenAPI, middleware de seguridad y servicios distribuidos.</span>
+              </div>
+              <div class="flex items-start gap-2.5 text-xs text-slate-300">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span><strong>Web Admin & PowerBI:</strong> Tableros dinámicos en tiempo real con tokens de sesión y métricas clave de rotación comercial.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-slate-800 flex items-center justify-between">
+            <div class="flex gap-2">
+              <span class="px-2.5 py-1 rounded bg-slate-800 text-xs font-mono text-slate-300">C# / .NET 8</span>
+              <span class="px-2.5 py-1 rounded bg-slate-800 text-xs font-mono text-slate-300">Flutter</span>
+              <span class="px-2.5 py-1 rounded bg-slate-800 text-xs font-mono text-slate-300">Azure SQL</span>
+              <span class="px-2.5 py-1 rounded bg-slate-800 text-xs font-mono text-slate-300">PowerBI</span>
+            </div>
+            <button onclick="openModal('walter-modal')" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 transition">
+              Ver Detalles <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: AgroVerde Data Mining -->
+        <div class="glass-card rounded-2xl p-8 border border-slate-700/60 flex flex-col justify-between relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-emerald-500/20 transition-all"></div>
+          
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                  <i data-lucide="sprout" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-white">AgroVerde Analytics</h3>
+                  <div class="text-xs text-emerald-400 font-mono">Minería de Datos, Machine Learning & Gobierno</div>
+                </div>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Data & AI Enterprise</span>
+            </div>
+
+            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              Plataforma analítica e industrial para la Cooperativa AgroVerde orientada a predecir caídas de rendimiento agrícola antes de cosecha. Integra un Data Warehouse SQL, pipeline en C# .NET para evaluación de calidad en 6 dimensiones y un motor ML en Python con blindaje anti-leakage.
+            </p>
+
+            <div class="space-y-3 mb-6">
+              <div class="flex items-start gap-2.5 text-xs text-slate-300">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span><strong>Modelos Predictivos Campeones:</strong> XGBoost y LightGBM con corrección de desbalance (`scale_pos_weight = 4.73`), alcanzando ROC-AUC de <strong>0.9481</strong> y Recall de <strong>86.53%</strong>.</span>
+              </div>
+              <div class="flex items-start gap-2.5 text-xs text-slate-300">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span><strong>Blindaje Anti-Leakage:</strong> Prohibición estricta y aislamiento de predictores directos del target (`rendimiento_ton_ha`) para garantizar validez en producción.</span>
+              </div>
+              <div class="flex items-start gap-2.5 text-xs text-slate-300">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span><strong>Motor de Calidad C# .NET:</strong> Algoritmo de staging masivo con SqlBulkCopy, auditoría de 10,000 registros, 97.63% de registros conformes y cuarentena automática.</span>
+              </div>
+              <div class="flex items-start gap-2.5 text-xs text-slate-300">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span><strong>Impacto Económico Demostrado:</strong> Alertas preventivas que proyectan salvar <strong>$164,050.00 USD anuales</strong> en cosechas vulnerables.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-slate-800 flex items-center justify-between">
+            <div class="flex gap-2">
+              <span class="px-2.5 py-1 rounded bg-slate-800 text-xs font-mono text-slate-300">Python</span>
+              <span class="px-2.5 py-1 rounded bg-slate-800 text-xs font-mono text-slate-300">XGBoost</span>
+              <span class="px-2.5 py-1 rounded bg-slate-800 text-xs font-mono text-slate-300">C# .NET</span>
+              <span class="px-2.5 py-1 rounded bg-slate-800 text-xs font-mono text-slate-300">SQL DataWarehouse</span>
+            </div>
+            <button onclick="openModal('agroverde-modal')" class="text-sm font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1 transition">
+              Ver Detalles <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE PROYECTOS / MÓDULOS FILTRABLES -->
+  <section id="proyectos" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <h2 class="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Desglose de Componentes</h2>
+          <p class="text-3xl font-extrabold text-white">Catálogo de Proyectos y Módulos</p>
+          <p class="text-slate-400 text-sm mt-1">Explora cada componente según su especialidad técnica.</p>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="flex flex-wrap gap-2 p-1.5 rounded-xl bg-slate-900 border border-slate-800">
+          <button onclick="filterProjects('all')" class="filter-btn active px-4 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white transition">Todos (6)</button>
+          <button onclick="filterProjects('erp')" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition">Distribuidora Walter</button>
+          <button onclick="filterProjects('ai')" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition">AgroVerde Data/AI</button>
+          <button onclick="filterProjects('backend')" class="filter-btn px-4 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition">Backend & Microservicios</button>
+        </div>
+      </div>
+
+      <!-- Grid of Projects -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1: Flutter Client -->
+        <div class="project-card erp glass-card rounded-xl p-6 flex flex-col justify-between" data-category="erp">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-0.5 rounded text-xs font-mono font-medium bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Flutter / Dart</span>
+              <span class="text-xs text-slate-400 font-mono">Mobile & Desktop</span>
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Distribuidora Walter App</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              Cliente multiplataforma con 20+ pantallas: POS de ventas, compras, catálogo por lotes, control de proveedores y exportación de facturas a PDF en tiempo real.
+            </p>
+            <div class="space-y-1.5 text-xs text-slate-400 mb-6">
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Gestión de Bodegas, Lotes y Categorías</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Generación de PDF con `pdf` y `printing`</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Servicios HTTP desacoplados por entidad</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-500">distribuidora-mobile-app</span>
+            <button onclick="openModal('flutter-modal')" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+              Detalles <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: ASP.NET Core Web API -->
+        <div class="project-card erp backend glass-card rounded-xl p-6 flex flex-col justify-between" data-category="erp backend">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-0.5 rounded text-xs font-mono font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">ASP.NET Core 8</span>
+              <span class="text-xs text-slate-400 font-mono">Backend API</span>
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Distribuidora Web API</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              API RESTful empresarial en C# conectada a Azure SQL. Cuenta con autenticación JWT, repositorio pattern, autorización basada en roles (Gerente, Vendedor) y auditoría.
+            </p>
+            <div class="space-y-1.5 text-xs text-slate-400 mb-6">
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>ASP.NET Core Identity & JWT Bearer</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Registro automático de transacciones en Auditoría</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Entity Framework Core con migraciones Azure SQL</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-500">distribuidora-backend-api</span>
+            <button onclick="openModal('api-modal')" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+              Detalles <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3: Microservices 2026 -->
+        <div class="project-card erp backend glass-card rounded-xl p-6 flex flex-col justify-between" data-category="erp backend">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-0.5 rounded text-xs font-mono font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">Microservices C#</span>
+              <span class="text-xs text-slate-400 font-mono">Modern Stack 2026</span>
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Walter Microservices</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              Modernización orientada a servicios desacoplados con middlewares propios para telemetría, controladores segregados y generadores de datos sintéticos de prueba.
+            </p>
+            <div class="space-y-1.5 text-xs text-slate-400 mb-6">
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Swagger UI v1 y documentación OpenAPI</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Middleware pipeline para seguridad y logs</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Semillas de datos para pruebas automatizadas</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-500">distribuidora-microservices</span>
+            <button onclick="openModal('micro-modal')" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+              Detalles <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 4: Web Admin & PowerBI -->
+        <div class="project-card erp glass-card rounded-xl p-6 flex flex-col justify-between" data-category="erp">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-0.5 rounded text-xs font-mono font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">PowerBI & Web</span>
+              <span class="text-xs text-slate-400 font-mono">Analytics BI</span>
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">Portal Web & PowerBI</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              Tablero web interactivo con autenticación y embedding de reportes PowerBI con tokens de acceso dinámicos para métricas de inventario y tendencias de ventas.
+            </p>
+            <div class="space-y-1.5 text-xs text-slate-400 mb-6">
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>PowerBI Client JavaScript SDK integrado</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Módulos de autenticación y panel administrativo</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Configuración de entorno desacoplada en ES Modules</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-500">distribuidora-web-admin</span>
+            <button onclick="openModal('powerbi-modal')" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+              Detalles <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 5: ML Models XGBoost -->
+        <div class="project-card ai glass-card rounded-xl p-6 flex flex-col justify-between" data-category="ai">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-0.5 rounded text-xs font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Python & ML</span>
+              <span class="text-xs text-slate-400 font-mono">Predictive AI</span>
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">AgroVerde ML Engine</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              Pipeline de machine learning para predecir bajo rendimiento de parcelas. Modelos XGBoost, LightGBM y Random Forest con validación cruzada y anti-leakage.
+            </p>
+            <div class="space-y-1.5 text-xs text-slate-400 mb-6">
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>ROC-AUC: 0.9481 | Recall: 86.53% | F1: 73.0 pts</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Manejo de desbalance con scale_pos_weight</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>10 Notebooks de investigación con ciclo PHVA</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-500">02_AgroVerde_Data_Mining/src</span>
+            <button onclick="openModal('agroml-modal')" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
+              Detalles <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 6: C# Governance & Quality Engine -->
+        <div class="project-card ai backend glass-card rounded-xl p-6 flex flex-col justify-between" data-category="ai backend">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-0.5 rounded text-xs font-mono font-medium bg-teal-500/10 text-teal-400 border border-teal-500/20">C# .NET & SQL DW</span>
+              <span class="text-xs text-slate-400 font-mono">Governance & Quality</span>
+            </div>
+            <h4 class="text-lg font-bold text-white mb-2">AgroVerde C# Pipeline</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              Motor en .NET Core que audita 6 dimensiones de calidad de datos, evalúa 5 políticas de gobernanza, ejecuta carga SqlBulkCopy y genera cuarentenas automáticas.
+            </p>
+            <div class="space-y-1.5 text-xs text-slate-400 mb-6">
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>98.20% de completitud y validez verificada</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Aislamiento en cuarentena de registros inválidos</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Matriz RACI y trazabilidad legal de datos 100%</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-500">02_AgroVerde_Data_Mining/dotnet</span>
+            <button onclick="openModal('agrogov-modal')" class="text-xs font-semibold text-teal-400 hover:text-teal-300 flex items-center gap-1">
+              Detalles <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ARQUITECTURA TÉCNICA Y FLUJOS -->
+  <section id="arquitectura" class="py-20 border-t border-slate-800/80 bg-slate-900/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs uppercase tracking-widest text-indigo-400 font-semibold mb-2">Diseño y Patrones de Ingeniería</h2>
+        <p class="text-3xl font-extrabold text-white">Arquitectura de los Ecosistemas</p>
+        <p class="text-slate-400 mt-2 text-sm">Visualización clara de cómo interactúan las capas de front-end, lógica de negocio, persistencia y modelos analíticos.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Arquitectura Distribuidora Walter -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700/60 space-y-6">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+              <i data-lucide="layers" class="w-5 h-5 text-indigo-400"></i>
+              Arquitectura Distribuidora Walter
+            </h3>
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Multicapa & Microservicios</span>
+          </div>
+
+          <div class="code-block rounded-xl p-5 font-mono text-xs text-slate-300 overflow-x-auto leading-relaxed border border-slate-800">
+<span class="text-indigo-400 font-bold">┌────────────────────────────────────────────────────────┐</span>
+<span class="text-indigo-400 font-bold">│                 CLIENTES / INTERFACES                  │</span>
+<span class="text-indigo-400 font-bold">├────────────────────────────┬───────────────────────────┤</span>
+<span class="text-slate-300">│ 📱 Flutter Multiplatform   │ 🌐 Web Admin & Dashboards │</span>
+<span class="text-slate-400">│ (POS, Lotes, Ventas, PDF)  │ (PowerBI Embedded, JS ES6)│</span>
+<span class="text-indigo-400 font-bold">└──────────────┬─────────────┴─────────────┬─────────────┘</span>
+               │ HTTP / JSON (JWT Token)   │
+<span class="text-indigo-400 font-bold">┌──────────────▼───────────────────────────▼─────────────┐</span>
+<span class="text-indigo-400 font-bold">│                  API GATEWAY & BACKEND                 │</span>
+<span class="text-indigo-400 font-bold">├────────────────────────────┬───────────────────────────┤</span>
+<span class="text-slate-300">│ ⚙️ ASP.NET Core 8 Web API   │ 🧩 Walter Microservices   │</span>
+<span class="text-slate-400">│ • Custom Claims Principal  │ • Telemetry Middlewares   │</span>
+<span class="text-slate-400">│ • Repositories & Security  │ • High-Throughput Routes  │</span>
+<span class="text-slate-400">│ • Tabla Auditoria Activa   │ • OpenAPI / Swagger UI    │</span>
+<span class="text-indigo-400 font-bold">└──────────────┬───────────────────────────┬─────────────┘</span>
+               │ Entity Framework Core     │
+<span class="text-indigo-400 font-bold">┌──────────────▼───────────────────────────▼─────────────┐</span>
+<span class="text-indigo-400 font-bold">│                   PERSISTENCIA EN NUBE                 │</span>
+<span class="text-slate-300">│ 🗄️ Microsoft Azure SQL Database                        │</span>
+<span class="text-slate-400">│ • Esquema relacional normalizado                       │</span>
+<span class="text-slate-400">│ • Transacciones ACID para compras/ventas/inventario    │</span>
+<span class="text-indigo-400 font-bold">└────────────────────────────────────────────────────────┘</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
+              <span class="text-slate-400">Seguridad:</span>
+              <p class="font-semibold text-slate-200 mt-0.5">JWT Bearer + RBAC (Roles: Gerente, Vendedor)</p>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
+              <span class="text-slate-400">Reportes:</span>
+              <p class="font-semibold text-slate-200 mt-0.5">PowerBI Embedded + Dynamic PDF</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arquitectura AgroVerde -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700/60 space-y-6">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+              <i data-lucide="cpu" class="w-5 h-5 text-emerald-400"></i>
+              Pipeline AgroVerde Data & AI
+            </h3>
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">ETL + ML + Gobernanza</span>
+          </div>
+
+          <div class="code-block rounded-xl p-5 font-mono text-xs text-slate-300 overflow-x-auto leading-relaxed border border-slate-800">
+<span class="text-emerald-400 font-bold">┌────────────────────────────────────────────────────────┐</span>
+<span class="text-emerald-400 font-bold">│            FUENTES DE DATOS DE CAMPO (INGESTA)         │</span>
+<span class="text-slate-300">│ 🌱 Sensores IoT, Monitoreo Agrícola, 10,000 Registros  │</span>
+<span class="text-emerald-400 font-bold">└──────────────────────────┬─────────────────────────────┘</span>
+                           │ SqlBulkCopy Staging
+<span class="text-emerald-400 font-bold">┌──────────────────────────▼─────────────────────────────┐</span>
+<span class="text-emerald-400 font-bold">│       MOTOR C# .NET: CALIDAD & GOBERNANZA DE DATOS     │</span>
+<span class="text-slate-300">│ • 6 Dimensiones de Calidad (Completitud 98.2%)         │</span>
+<span class="text-slate-300">│ • 5 Políticas de Gobernanza y Matriz RACI              │</span>
+<span class="text-slate-400">│ • Cuarentena automática de 237 registros anomalías     │</span>
+<span class="text-slate-300">│ • Target Leakage Auditor (Bloqueo de rendimiento_ton)  │</span>
+<span class="text-emerald-400 font-bold">└──────────────────────────┬─────────────────────────────┘</span>
+                           │ Dataset Analítico Parcela-Ciclo
+<span class="text-emerald-400 font-bold">┌──────────────────────────▼─────────────────────────────┐</span>
+<span class="text-emerald-400 font-bold">│       NÚCLEO PREDICTIVO PYTHON (XGBOOST / LIGHTGBM)    │</span>
+<span class="text-slate-300">│ • Corrección Desbalance: scale_pos_weight = 4.73       │</span>
+<span class="text-slate-300">│ • ROC-AUC: 0.9481 | Recall: 86.53% | F1-Score: 73.00   │</span>
+<span class="text-slate-400">│ • Alerta temprana preventiva de pérdida agronómica     │</span>
+<span class="text-emerald-400 font-bold">└──────────────────────────┬─────────────────────────────┘</span>
+                           │ Decisión de Rescate
+<span class="text-emerald-400 font-bold">┌──────────────────────────▼─────────────────────────────┐</span>
+<span class="text-slate-200 font-bold">│ 💰 AHORRO ANUAL ESTIMADO: $164,050.00 USD PRESERVADOS  │</span>
+<span class="text-emerald-400 font-bold">└────────────────────────────────────────────────────────┘</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
+              <span class="text-slate-400">Calidad:</span>
+              <p class="font-semibold text-slate-200 mt-0.5">Ciclo PHVA & 98.2% registros válidos</p>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
+              <span class="text-slate-400">Gobernanza:</span>
+              <p class="font-semibold text-slate-200 mt-0.5">Control Anti-Fuga (Target Leakage Shield)</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HABILIDADES TÉCNICAS -->
+  <section id="habilidades" class="py-20 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs uppercase tracking-widest text-indigo-400 font-semibold mb-2">Stack Tecnológico</h2>
+        <p class="text-3xl font-extrabold text-white">Competencias y Habilidades de Ingeniería</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Columna 1 -->
+        <div class="glass-card rounded-xl p-6 border border-slate-700/60 space-y-4">
+          <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <i data-lucide="server" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-base font-bold text-white">Backend & Cloud</h4>
+          <div class="space-y-2 text-xs text-slate-300">
+            <div class="flex items-center justify-between"><span>C# / .NET 8 Core</span><span class="text-indigo-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>ASP.NET Web API</span><span class="text-indigo-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Microservicios</span><span class="text-indigo-400 font-mono">Intermedio</span></div>
+            <div class="flex items-center justify-between"><span>Entity Framework Core</span><span class="text-indigo-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Microsoft Azure SQL</span><span class="text-indigo-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>JWT / Identity Security</span><span class="text-indigo-400 font-mono">Avanzado</span></div>
+          </div>
+        </div>
+
+        <!-- Columna 2 -->
+        <div class="glass-card rounded-xl p-6 border border-slate-700/60 space-y-4">
+          <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+            <i data-lucide="smartphone" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-base font-bold text-white">Frontend & Móvil</h4>
+          <div class="space-y-2 text-xs text-slate-300">
+            <div class="flex items-center justify-between"><span>Flutter / Dart</span><span class="text-cyan-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Multiplataforma (iOS/Android/Web)</span><span class="text-cyan-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>PowerBI Embedded SDK</span><span class="text-cyan-400 font-mono">Intermedio</span></div>
+            <div class="flex items-center justify-between"><span>JavaScript ES6+ / HTML5</span><span class="text-cyan-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Tailwind CSS</span><span class="text-cyan-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Generación Dinámica de PDF</span><span class="text-cyan-400 font-mono">Avanzado</span></div>
+          </div>
+        </div>
+
+        <!-- Columna 3 -->
+        <div class="glass-card rounded-xl p-6 border border-slate-700/60 space-y-4">
+          <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+            <i data-lucide="brain" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-base font-bold text-white">IA & Data Science</h4>
+          <div class="space-y-2 text-xs text-slate-300">
+            <div class="flex items-center justify-between"><span>Python (Data Stack)</span><span class="text-emerald-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>XGBoost & LightGBM</span><span class="text-emerald-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Scikit-Learn & ML Pipelines</span><span class="text-emerald-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Pandas / NumPy</span><span class="text-emerald-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Feature Engineering</span><span class="text-emerald-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Anti-Leakage Auditing</span><span class="text-emerald-400 font-mono">Avanzado</span></div>
+          </div>
+        </div>
+
+        <!-- Columna 4 -->
+        <div class="glass-card rounded-xl p-6 border border-slate-700/60 space-y-4">
+          <div class="w-10 h-10 rounded-lg bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400">
+            <i data-lucide="database" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-base font-bold text-white">Datos & Gobierno</h4>
+          <div class="space-y-2 text-xs text-slate-300">
+            <div class="flex items-center justify-between"><span>SQL Server & T-SQL</span><span class="text-teal-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Data Warehouse & Star Schema</span><span class="text-teal-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>SqlBulkCopy & ETL</span><span class="text-teal-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Calidad (6 Dimensiones)</span><span class="text-teal-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Políticas DAMA & RACI</span><span class="text-teal-400 font-mono">Avanzado</span></div>
+            <div class="flex items-center justify-between"><span>Git & CI/CD Workflows</span><span class="text-teal-400 font-mono">Avanzado</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSPACE ESTRUCTURA LOCAL -->
+  <section class="py-16 bg-slate-900/60 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="glass-card rounded-2xl p-8 border border-slate-700/60">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div>
+            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+              <i data-lucide="folder-tree" class="w-5 h-5 text-indigo-400"></i>
+              Estructura Organizada en Disco Local
+            </h3>
+            <p class="text-xs text-slate-400 mt-1">Directorio de trabajo: <code class="text-slate-300">c:\Users\dark0\OneDrive\Desktop\Proyectos</code></p>
+          </div>
+          <span class="text-xs px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-mono">
+            ✔ Repositorios Limpios & Sincronizados
+          </span>
+        </div>
+
+        <div class="code-block rounded-xl p-5 font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto">
+Proyectos/
+├── <span class="text-indigo-400 font-bold">00_Portafolio_Profesional/</span>            <span class="text-slate-500"># Este sitio web interactivo con demos en vivo</span>
+│   ├── index.html
+│   └── assets/
+│
+├── <span class="text-indigo-400 font-bold">01_Distribuidora_Walter_ERP/</span>           <span class="text-slate-500"># Ecosistema completo Distribuidora Walter</span>
+│   ├── <span class="text-sky-300 font-bold">distribuidora-mobile-app/</span>          <span class="text-slate-500"># App Flutter Multiplataforma (Git synced)</span>
+│   ├── <span class="text-purple-300 font-bold">distribuidora-backend-api/</span>         <span class="text-slate-500"># ASP.NET Core 8 Web API (Azure SQL & JWT)</span>
+│   ├── <span class="text-blue-300 font-bold">distribuidora-microservices/</span>       <span class="text-slate-500"># Microservicios .NET (Stack 2026 Swagger)</span>
+│   └── <span class="text-amber-300 font-bold">distribuidora-web-admin/</span>           <span class="text-slate-500"># Web Client y Reportes PowerBI Embebidos</span>
+│
+└── <span class="text-emerald-400 font-bold">02_AgroVerde_Data_Mining/</span>              <span class="text-slate-500"># Plataforma de Minería de Datos & ML</span>
+    ├── <span class="text-emerald-300">src/</span>                               <span class="text-slate-500"># Modelos XGBoost, features, KPIs en Python</span>
+    ├── <span class="text-teal-300">dotnet/</span>                            <span class="text-slate-500"># Motor C# de Calidad de Datos & Gobernanza</span>
+    ├── <span class="text-yellow-300">notebooks/</span>                         <span class="text-slate-500"># 10 Jupyter Notebooks analíticos con ciclo PHVA</span>
+    ├── <span class="text-cyan-300">data/</span>                              <span class="text-slate-500"># Repositorio (raw, processed, analytical)</span>
+    └── <span class="text-slate-300">docs/ & reports/</span>                   <span class="text-slate-500"># Informes ejecutivos y matrices de auditoría</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO / FOOTER -->
+  <section id="contacto" class="py-20 border-t border-slate-800/80 bg-slate-900/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-xs uppercase tracking-widest text-indigo-400 font-semibold mb-2">Contacto Directo</h2>
+          <p class="text-3xl font-extrabold text-white">¿Hablamos de tu próximo proyecto?</p>
+          <p class="text-slate-400 mt-3 text-sm leading-relaxed">
+            Ingeniero en Sistemas de Información enfocado en desarrollo de software de alta calidad, arquitecturas robustas y análisis predictivo. Abierto a colaboraciones, consultoría o roles de ingeniería de software.
+          </p>
+
+          <div class="mt-8 space-y-4">
+            <div class="flex items-center gap-3 text-slate-300 text-sm">
+              <div class="w-10 h-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="text-xs text-slate-500">Correo Electrónico</div>
+                <a href="mailto:Dark05studios@gmail.com" class="font-medium text-white hover:text-indigo-400 transition">Dark05studios@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 text-slate-300 text-sm">
+              <div class="w-10 h-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-emerald-400">
+                <i data-lucide="github" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="text-xs text-slate-500">Perfil de GitHub</div>
+                <a href="https://github.com/Gabriel200545" target="_blank" class="font-medium text-white hover:text-emerald-400 transition">github.com/Gabriel200545</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 text-slate-300 text-sm">
+              <div class="w-10 h-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-cyan-400">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="text-xs text-slate-500">Ubicación & Modalidad</div>
+                <div class="font-medium text-white">Remoto / Híbrido</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-8 border border-slate-700/60 space-y-6">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <i data-lucide="send" class="w-4 h-4 text-emerald-400"></i>
+            Enviar Mensaje
+          </h3>
+          <form onsubmit="handleContact(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1">Tu Nombre</label>
+              <input type="text" id="contact-name" required placeholder="Ej: Carlos Méndez" class="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1">Tu Correo</label>
+              <input type="email" id="contact-email" required placeholder="correo@empresa.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-400 mb-1">Mensaje o Propuesta</label>
+              <textarea id="contact-message" required rows="3" placeholder="Hola Gabriel, me interesa tu perfil para un proyecto..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"></textarea>
+            </div>
+            <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-emerald-500 hover:from-indigo-500 hover:to-emerald-400 text-white font-semibold text-sm shadow-md transition flex items-center justify-center gap-2">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              Abrir Correo con el Mensaje
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>© 2026 Gabriel • Desarrollador de Software & Data Engineer.</div>
+        <div class="font-mono text-slate-400">Construido con estándares Clean Code & Alta Disponibilidad</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL: FACTURA / TICKET PDF EMITIDO EN DEMO POS -->
+  <div id="invoice-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <i data-lucide="check-circle" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-white text-base">Comprobante Fiscal Emitido</h4>
+            <div class="text-[11px] text-slate-400 font-mono" id="inv-modal-folio">FAC-2026-00482</div>
+          </div>
+        </div>
+        <button onclick="closeModal('invoice-modal')" class="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Ticket invoice preview -->
+      <div class="bg-white text-slate-900 p-6 rounded-xl font-mono text-xs space-y-4 shadow-inner" id="printable-ticket">
+        <div class="text-center space-y-1 border-b border-slate-300 pb-3">
+          <div class="font-extrabold text-sm tracking-wider">DISTRIBUIDORA WALTER S.A.</div>
+          <div class="text-[10px] text-slate-600">RUC: J0310000088921 • Tel: +505 2244-8890</div>
+          <div class="text-[10px] text-slate-600">Km 12.5 Carretera Norte, Managua</div>
+          <div class="text-[10px] text-emerald-700 font-bold">FACTURA ELECTRÓNICA DE VENTA</div>
+        </div>
+
+        <div class="text-[10px] space-y-0.5 border-b border-slate-300 pb-2">
+          <div><strong>Fecha:</strong> <span id="inv-date"></span></div>
+          <div><strong>Cliente:</strong> <span id="inv-customer"></span></div>
+          <div><strong>Bodega:</strong> Bodega Central Norte (Despacho Inmediato)</div>
+          <div><strong>Cajero / Usuario:</strong> Gabriel (Rol: Administrador POS)</div>
+        </div>
+
+        <table class="w-full text-[10px] text-left">
+          <thead class="border-b border-slate-300 text-slate-700">
+            <tr>
+              <th class="py-1">Cant</th>
+              <th class="py-1">Descripción / Lote</th>
+              <th class="py-1 text-right">P.U.</th>
+              <th class="py-1 text-right">Total</th>
+            </tr>
+          </thead>
+          <tbody id="inv-items-body" class="divide-y divide-slate-200">
+            <!-- Dynamic items -->
+          </tbody>
+        </table>
+
+        <div class="border-t border-slate-300 pt-2 text-[11px] space-y-1 font-bold">
+          <div class="flex justify-between font-normal text-slate-700"><span>Subtotal:</span><span id="inv-subtotal">$0.00</span></div>
+          <div class="flex justify-between font-normal text-slate-700"><span>IVA (15%):</span><span id="inv-iva">$0.00</span></div>
+          <div class="flex justify-between text-slate-900 text-xs font-extrabold pt-1 border-t border-slate-300">
+            <span>TOTAL PAGADO:</span><span id="inv-total" class="text-emerald-700">$0.00</span>
+          </div>
+        </div>
+
+        <div class="text-center pt-3 border-t border-slate-300 space-y-1 text-[9px] text-slate-500">
+          <div>¡Gracias por su compra en Distribuidora Walter!</div>
+          <div class="font-mono">Resolución DGI: No. 2026-AUT-99482-DW</div>
+          <div class="font-bold text-slate-700">Emisión digital verificada en Azure SQL Backend</div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-2">
+        <button onclick="window.print()" class="flex items-center gap-2 text-xs bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl font-medium transition">
+          <i data-lucide="printer" class="w-4 h-4"></i> Imprimir / Guardar PDF
+        </button>
+        <button onclick="closeModal('invoice-modal')" class="text-xs text-slate-400 hover:text-white px-4 py-2">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALES DE DETALLE TÉCNICO DE PROYECTO (EXISTENTES) -->
+  <div id="walter-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-2xl p-6 sm:p-8 border border-slate-700 space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div>
+          <span class="text-xs font-mono text-indigo-400">EXPEDIENTE DE PROYECTO</span>
+          <h3 class="text-2xl font-bold text-white">Ecosistema Distribuidora Walter ERP</h3>
+        </div>
+        <button onclick="closeModal('walter-modal')" class="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-sm text-slate-300">
+        <h4 class="text-base font-bold text-white">Descripción y Reto de Negocio</h4>
+        <p>
+          Distribuidora Walter requería una plataforma integral de gestión comercial para unificar la operación de sus bodegas, el inventario clasificado por marcas, lotes y vencimientos, las compras a proveedores mayoristas y las ventas en tiempo real a clientes con emisión inmediata de comprobantes en PDF.
+        </p>
+
+        <h4 class="text-base font-bold text-white pt-2">Componentes Técnicos Clave:</h4>
+        <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-300">
+          <li><strong>distribuidora-mobile-app (Flutter):</strong> Interfaz gráfica responsiva diseñada para móviles, escritorios y navegadores con sincronización HTTP contra la API central.</li>
+          <li><strong>distribuidora-backend-api (ASP.NET Core 8):</strong> Capa de servicios RESTful asegurada con JWT Bearer y Entity Framework Core contra Microsoft Azure SQL.</li>
+          <li><strong>distribuidora-microservices (Stack 2026):</strong> Arquitectura moderna desacoplada en microservicios, con Swagger interactivo para contratos de interfaz.</li>
+          <li><strong>distribuidora-web-admin (Web & PowerBI):</strong> Panel con JavaScript ES6 y SDK de PowerBI Embedded para consulta de KPIs comerciales por la gerencia.</li>
+        </ul>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 border-t border-slate-800">
+        <a href="https://github.com/Gabriel200545/github-Proyecto-Distribuidora-Walter" target="_blank" class="flex items-center gap-2 text-xs bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl font-medium transition">
+          <i data-lucide="github" class="w-4 h-4"></i> Ver Repositorio en GitHub
+        </a>
+        <button onclick="closeModal('walter-modal')" class="text-xs text-slate-400 hover:text-white px-4 py-2">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="agroverde-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-2xl p-6 sm:p-8 border border-slate-700 space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div>
+          <span class="text-xs font-mono text-emerald-400">EXPEDIENTE DE PROYECTO</span>
+          <h3 class="text-2xl font-bold text-white">AgroVerde — Minería de Datos & Gobierno</h3>
+        </div>
+        <button onclick="closeModal('agroverde-modal')" class="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-sm text-slate-300">
+        <h4 class="text-base font-bold text-white">Resumen Ejecutivo y Métricas Demostradas</h4>
+        <p>
+          Desarrollado para la Cooperativa AgroVerde R.L., este proyecto aborda la detección temprana de parcelas hortícolas con riesgo de bajo rendimiento (&lt; 23.2 ton/ha). Su implementación preventiva permite evitar pérdidas estimadas en <strong>$164,050.00 USD anuales</strong>.
+        </p>
+
+        <div class="grid grid-cols-3 gap-3 text-center">
+          <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+            <div class="text-xs text-slate-400">ROC-AUC Test</div>
+            <div class="text-lg font-bold text-emerald-400">0.9481</div>
+          </div>
+          <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+            <div class="text-xs text-slate-400">Recall Bajo Rendimiento</div>
+            <div class="text-lg font-bold text-emerald-400">86.53%</div>
+          </div>
+          <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+            <div class="text-xs text-slate-400">Registros Conformes</div>
+            <div class="text-lg font-bold text-emerald-400">97.63%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 border-t border-slate-800">
+        <a href="https://github.com/Gabriel200545/AgroVerde-Data-Mining" target="_blank" class="flex items-center gap-2 text-xs bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl font-medium transition">
+          <i data-lucide="github" class="w-4 h-4"></i> Ver Repositorio en GitHub
+        </a>
+        <button onclick="closeModal('agroverde-modal')" class="text-xs text-slate-400 hover:text-white px-4 py-2">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="generic-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded-2xl p-6 sm:p-8 border border-slate-700 space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div>
+          <span class="text-xs font-mono text-indigo-400" id="generic-subtitle">MODAL</span>
+          <h3 class="text-xl font-bold text-white" id="generic-title">Título</h3>
+        </div>
+        <button onclick="closeModal('generic-modal')" class="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <div id="generic-content" class="text-sm text-slate-300 space-y-4"></div>
+      <div class="flex justify-end pt-4 border-t border-slate-800">
+        <button onclick="closeModal('generic-modal')" class="text-xs text-slate-300 hover:text-white px-4 py-2 bg-slate-800 rounded-lg">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC & DEMOS STATE MACHINE -->
+  <script>
+    // Initialize icons
+    lucide.createIcons();
+
+    // ==============================================================
+    // 1. DATA STATE FOR DISTRIBUIDORA WALTER (POS & LOTES)
+    // ==============================================================
+    const POS_CATALOG = [
+      { id: 1, name: "Arroz Blanco 50 lbs", category: "Granos Básicos", price: 24.50, stock: 85, lote: "L-2026-A1", vencimiento: "2027-04-15", icon: "box" },
+      { id: 2, name: "Frijol Rojo Criollo 50 lbs", category: "Granos Básicos", price: 32.00, stock: 42, lote: "L-2026-B3", vencimiento: "2026-11-28", icon: "box" },
+      { id: 3, name: "Aceite Vegetal 1 Litro", category: "Aceites y Grasas", price: 3.25, stock: 120, lote: "L-2026-C8", vencimiento: "2027-08-10", icon: "droplet" },
+      { id: 4, name: "Leche Entera UHT 1 Litro", category: "Lácteos", price: 1.80, stock: 60, lote: "L-2026-D4", vencimiento: "2026-12-05", icon: "coffee" },
+      { id: 5, name: "Café Molido Gourmet 400g", category: "Bebidas", price: 4.50, stock: 95, lote: "L-2026-E2", vencimiento: "2027-10-30", icon: "coffee" },
+      { id: 6, name: "Azúcar Sulfatada 2 kg", category: "Abarrotes", price: 2.10, stock: 50, lote: "L-2026-F9", vencimiento: "2028-01-20", icon: "box" }
+    ];
+
+    let cart = [];
+
+    // Render POS Products
+    function renderPosProducts() {
+      const container = document.getElementById('pos-products-list');
+      if (!container) return;
+
+      container.innerHTML = POS_CATALOG.map(p => `
+        <div class="glass-card rounded-xl p-3.5 border border-slate-800 flex flex-col justify-between hover:border-indigo-500/50 transition">
+          <div>
+            <div class="flex items-start justify-between gap-2">
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">${p.category}</span>
+              <span class="text-xs font-mono font-bold text-emerald-400">$${p.price.toFixed(2)}</span>
+            </div>
+            <h5 class="font-bold text-white text-xs mt-1.5">${p.name}</h5>
+            <div class="text-[11px] text-slate-400 font-mono mt-1 space-y-0.5">
+              <div>Lote: <span class="text-indigo-300">${p.lote}</span></div>
+              <div>Stock: <span class="${p.stock < 50 ? 'text-amber-400' : 'text-slate-300'}">${p.stock} unidades</span></div>
+            </div>
+          </div>
+          <button onclick="addToCart(${p.id})" class="mt-3 w-full py-1.5 rounded-lg bg-indigo-600/80 hover:bg-indigo-600 text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Agregar
+          </button>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function addToCart(productId) {
+      const product = POS_CATALOG.find(p => p.id === productId);
+      if (!product || product.stock <= 0) return;
+
+      const existing = cart.find(item => item.id === productId);
+      if (existing) {
+        if (existing.qty < product.stock) {
+          existing.qty++;
+        }
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+      renderCart();
+    }
+
+    function updateCartQty(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (!item) return;
+
+      const product = POS_CATALOG.find(p => p.id === productId);
+      item.qty += delta;
+
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== productId);
+      } else if (item.qty > product.stock) {
+        item.qty = product.stock;
+      }
+      renderCart();
+    }
+
+    function renderCart() {
+      const container = document.getElementById('pos-cart-items');
+      const countBadge = document.getElementById('cart-item-count');
+      const subtotalEl = document.getElementById('pos-subtotal');
+      const ivaEl = document.getElementById('pos-iva');
+      const totalEl = document.getElementById('pos-total');
+      const emitBtn = document.getElementById('btn-emit-sale');
+
+      const totalItems = cart.reduce((acc, cur) => acc + cur.qty, 0);
+      countBadge.innerText = `${totalItems} items`;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-8 text-xs text-slate-500">
+            <i data-lucide="shopping-bag" class="w-8 h-8 mx-auto mb-2 text-slate-600"></i>
+            El carrito está vacío. Agrega productos del catálogo.
+          </div>
+        `;
+        subtotalEl.innerText = "$0.00";
+        ivaEl.innerText = "$0.00";
+        totalEl.innerText = "$0.00";
+        emitBtn.disabled = true;
+        lucide.createIcons();
+        return;
+      }
+
+      emitBtn.disabled = false;
+
+      container.innerHTML = cart.map(item => `
+        <div class="flex items-center justify-between p-2 rounded-lg bg-slate-900 border border-slate-800 text-xs">
+          <div class="truncate pr-2">
+            <div class="font-bold text-white truncate">${item.name}</div>
+            <div class="text-[10px] text-slate-400 font-mono">$${item.price.toFixed(2)} c/u • Lote: ${item.lote}</div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <div class="flex items-center border border-slate-700 rounded-lg overflow-hidden bg-slate-950 font-mono">
+              <button onclick="updateCartQty(${item.id}, -1)" class="px-2 py-0.5 text-slate-400 hover:text-white hover:bg-slate-800">-</button>
+              <span class="px-2 text-white">${item.qty}</span>
+              <button onclick="updateCartQty(${item.id}, 1)" class="px-2 py-0.5 text-slate-400 hover:text-white hover:bg-slate-800">+</button>
+            </div>
+            <span class="font-mono font-bold text-emerald-400 min-w-[50px] text-right">$${(item.price * item.qty).toFixed(2)}</span>
+          </div>
+        </div>
+      `).join('');
+
+      const subtotal = cart.reduce((acc, cur) => acc + (cur.price * cur.qty), 0);
+      const iva = subtotal * 0.15;
+      const total = subtotal + iva;
+
+      subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
+      ivaEl.innerText = `$${iva.toFixed(2)}`;
+      totalEl.innerText = `$${total.toFixed(2)}`;
+      lucide.createIcons();
+    }
+
+    function submitPosSale() {
+      if (cart.length === 0) return;
+
+      // Confetti celebration effect!
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+
+      const customer = document.getElementById('pos-customer-select').value;
+      const subtotal = cart.reduce((acc, cur) => acc + (cur.price * cur.qty), 0);
+      const iva = subtotal * 0.15;
+      const total = subtotal + iva;
+      const folio = `FAC-2026-${Math.floor(10000 + Math.random() * 90000)}`;
+
+      // Update stock
+      cart.forEach(c => {
+        const prod = POS_CATALOG.find(p => p.id === c.id);
+        if (prod) prod.stock -= c.qty;
+      });
+
+      // Populate Invoice Modal
+      document.getElementById('inv-modal-folio').innerText = folio;
+      document.getElementById('inv-date').innerText = new Date().toLocaleString();
+      document.getElementById('inv-customer').innerText = customer;
+      document.getElementById('inv-subtotal').innerText = `$${subtotal.toFixed(2)}`;
+      document.getElementById('inv-iva').innerText = `$${iva.toFixed(2)}`;
+      document.getElementById('inv-total').innerText = `$${total.toFixed(2)}`;
+
+      document.getElementById('inv-items-body').innerHTML = cart.map(item => `
+        <tr>
+          <td class="py-1">${item.qty}</td>
+          <td class="py-1">${item.name} (${item.lote})</td>
+          <td class="py-1 text-right">$${item.price.toFixed(2)}</td>
+          <td class="py-1 text-right font-bold">$${(item.price * item.qty).toFixed(2)}</td>
+        </tr>
+      `).join('');
+
+      // Open Modal
+      openModal('invoice-modal');
+
+      // Reset cart and re-render
+      cart = [];
+      renderCart();
+      renderPosProducts();
+      renderLotesTable();
+    }
+
+    // ==============================================================
+    // 2. LOTES & VENCIMIENTOS TABLE
+    // ==============================================================
+    function renderLotesTable() {
+      const tbody = document.getElementById('lotes-table-body');
+      if (!tbody) return;
+
+      const search = (document.getElementById('lote-search')?.value || '').toLowerCase();
+      const statusFilter = document.getElementById('lote-status-filter')?.value || 'all';
+
+      const now = new Date("2026-11-08");
+
+      const filtered = POS_CATALOG.filter(item => {
+        const matchesSearch = item.name.toLowerCase().includes(search) || item.lote.toLowerCase().includes(search);
+        
+        const expDate = new Date(item.vencimiento);
+        const diffDays = Math.ceil((expDate - now) / (1000 * 60 * 60 * 24));
+        
+        let status = 'vigente';
+        if (diffDays <= 0) status = 'vencido';
+        else if (diffDays <= 30) status = 'por_vencer';
+
+        if (statusFilter !== 'all' && statusFilter !== status) return false;
+        return matchesSearch;
+      });
+
+      tbody.innerHTML = filtered.map(item => {
+        const expDate = new Date(item.vencimiento);
+        const diffDays = Math.ceil((expDate - now) / (1000 * 60 * 60 * 24));
+        
+        let statusBadge = '<span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 font-bold">🟢 Vigente</span>';
+        if (diffDays <= 0) {
+          statusBadge = '<span class="px-2 py-0.5 rounded text-[10px] bg-red-500/20 text-red-400 font-bold">🔴 Vencido</span>';
+        } else if (diffDays <= 30) {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-400 font-bold">🟡 Caduca en ${diffDays}d</span>`;
+        }
+
+        return `
+          <tr class="hover:bg-slate-900/60 transition">
+            <td class="py-2.5 px-4 font-bold text-indigo-400">${item.lote}</td>
+            <td class="py-2.5 px-4 font-sans text-white font-medium">${item.name}</td>
+            <td class="py-2.5 px-4 text-slate-400">Bodega Central</td>
+            <td class="py-2.5 px-4 font-bold text-slate-200">${item.stock}</td>
+            <td class="py-2.5 px-4 text-slate-500">2026-05-10</td>
+            <td class="py-2.5 px-4 text-slate-300">${item.vencimiento}</td>
+            <td class="py-2.5 px-4">${statusBadge}</td>
+            <td class="py-2.5 px-4 text-right">
+              <button onclick="addToCart(${item.id}); switchWalterSubTab('pos');" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white transition text-[10px]">
+                Despachar
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterLotesTable() {
+      renderLotesTable();
+    }
+
+    // ==============================================================
+    // 3. API & SWAGGER PLAYGROUND
+    // ==============================================================
+    let currentEndpoint = 'getProductos';
+
+    const API_DEFINITIONS = {
+      getProductos: {
+        method: 'GET',
+        url: 'https://api.distribuidorawalter.com/api/Productos',
+        payload: null,
+        response: {
+          statusCode: 200,
+          statusText: '200 OK (28ms)',
+          body: {
+            success: true,
+            totalRecords: POS_CATALOG.length,
+            data: POS_CATALOG.map(p => ({
+              idProducto: p.id,
+              descripcion: p.name,
+              categoria: p.category,
+              precioUnitario: p.price,
+              stockTotal: p.stock,
+              loteActivo: p.lote,
+              fechaVencimiento: p.vencimiento
+            }))
+          }
+        }
+      },
+      postVenta: {
+        method: 'POST',
+        url: 'https://api.distribuidorawalter.com/api/Venta/Crear',
+        payload: {
+          idCliente: 104,
+          idBodega: 1,
+          tipoComprobante: "Factura",
+          detalles: [
+            { idProducto: 1, cantidad: 2, precio: 24.50 },
+            { idProducto: 3, cantidad: 5, precio: 3.25 }
+          ]
+        },
+        response: {
+          statusCode: 201,
+          statusText: '201 Created (45ms)',
+          body: {
+            result: true,
+            folioComprobante: "FAC-2026-00482",
+            mensaje: "Transacción ACID completada con éxito en Azure SQL.",
+            auditoriaId: 8849,
+            usuarioRegistra: "Gabriel (Vendedor POS)",
+            subtotal: 65.25,
+            iva: 9.78,
+            total: 75.03
+          }
+        }
+      },
+      getAuditoria: {
+        method: 'GET',
+        url: 'https://api.distribuidorawalter.com/api/Auditoria?top=3',
+        payload: null,
+        response: {
+          statusCode: 200,
+          statusText: '200 OK (34ms)',
+          body: {
+            auditorias: [
+              { id: 8849, accion: "INSERT VENTA", tabla: "Venta", usuario: "Gabriel", fecha: "2026-11-08T10:05:12Z", ip: "192.168.1.45" },
+              { id: 8848, accion: "UPDATE INVENTARIO", tabla: "InventarioLote", usuario: "Gabriel", fecha: "2026-11-08T10:05:12Z", ip: "192.168.1.45" },
+              { id: 8847, accion: "LOGIN", tabla: "AspNetUsers", usuario: "Gabriel", fecha: "2026-11-08T09:45:00Z", ip: "192.168.1.45" }
+            ]
+          }
+        }
+      },
+      getPowerBIToken: {
+        method: 'POST',
+        url: 'https://api.distribuidorawalter.com/api/Reports/embed-token',
+        payload: {
+          reportId: "ad480d41-606e-4b01-ba63-b4b7d9457d7e",
+          datasetId: "5a366fef-dfc8-4844-8b76-084b85816333",
+          accessLevel: "View"
+        },
+        response: {
+          statusCode: 200,
+          statusText: '200 OK (52ms)',
+          body: {
+            tokenId: "H4sIAAAAAAAEAB2UxQ7s1hJF_-VOHcnUpkgZmN1tOmaY...",
+            expiration: "2026-11-08T14:45:00Z",
+            embedUrl: "https://app.powerbi.com/reportEmbed?reportId=ad480d41...",
+            reportName: "Distribuidora Walter - Dashboard Ejecutivo"
+          }
+        }
+      }
+    };
+
+    function selectApiEndpoint(key) {
+      currentEndpoint = key;
+      const def = API_DEFINITIONS[key];
+
+      ['getProductos', 'postVenta', 'getAuditoria', 'getPowerBIToken'].forEach(k => {
+        const btn = document.getElementById(`ep-btn-${k}`);
+        if (k === key) {
+          btn.classList.add('border-indigo-500/50', 'bg-slate-850');
+          btn.classList.remove('border-slate-800');
+        } else {
+          btn.classList.remove('border-indigo-500/50', 'bg-slate-850');
+          btn.classList.add('border-slate-800');
+        }
+      });
+
+      document.getElementById('api-req-method').innerText = def.method;
+      document.getElementById('api-req-url').innerText = def.url;
+
+      const payloadContainer = document.getElementById('api-payload-container');
+      if (def.payload) {
+        payloadContainer.classList.remove('hidden');
+        document.getElementById('api-req-payload').innerText = JSON.stringify(def.payload, null, 2);
+      } else {
+        payloadContainer.classList.add('hidden');
+      }
+
+      document.getElementById('api-resp-status').innerText = 'Listo para enviar';
+      document.getElementById('api-resp-json').innerText = '// Haz clic en "Enviar Request" para ejecutar el endpoint.';
+    }
+
+    function executeApiTest() {
+      const def = API_DEFINITIONS[currentEndpoint];
+      const respStatus = document.getElementById('api-resp-status');
+      const respJson = document.getElementById('api-resp-json');
+
+      respStatus.innerText = 'Enviando...';
+      respJson.innerText = '// Estableciendo conexión con el servidor ASP.NET Core...';
+
+      setTimeout(() => {
+        respStatus.innerText = def.response.statusText;
+        respJson.innerText = JSON.stringify(def.response.body, null, 2);
+      }, 250);
+    }
+
+    // ==============================================================
+    // 4. AGROVERDE MACHINE LEARNING INFERENCE SIMULATOR
+    // ==============================================================
+    function runXGBoostInference() {
+      const precip = parseFloat(document.getElementById('range-precipitacion').value);
+      const temp = parseFloat(document.getElementById('range-temp').value);
+      const deficit = parseFloat(document.getElementById('range-deficit').value);
+      const plagas = parseFloat(document.getElementById('range-plagas').value);
+      const dias = parseFloat(document.getElementById('range-dias').value);
+
+      document.getElementById('val-precipitacion').innerText = `${precip} mm`;
+      document.getElementById('val-temp').innerText = `${temp} °C`;
+      document.getElementById('val-deficit').innerText = `${deficit} %`;
+      document.getElementById('val-plagas').innerText = `${plagas} %`;
+      document.getElementById('val-dias').innerText = `${dias} días`;
+
+      // Modelo matemático de inferencia ajustado a los pesos del XGBoost entrenado (Caso 6)
+      // Variables: rendimiento_bajo se dispara con bajo precip, alto déficit y calor en floración
+      let logOdds = -2.8; // Prior bajo (~15% base rate)
+      
+      // Factor déficit hídrico (peso alto)
+      logOdds += (deficit / 65) * 2.8;
+
+      // Factor precipitación (< 180mm eleva exponencialmente el riesgo)
+      if (precip < 180) {
+        logOdds += ((180 - precip) / 120) * 2.2;
+      } else {
+        logOdds -= ((precip - 180) / 270) * 0.8;
+      }
+
+      // Factor temperatura (estrés térmico > 28°C)
+      if (temp > 28) {
+        logOdds += ((temp - 28) / 10) * 1.9;
+      }
+
+      // Factor plagas
+      logOdds += (plagas / 50) * 2.0;
+
+      // Sigmoid function
+      const probability = 1 / (1 + Math.exp(-logOdds));
+      const riskPercent = Math.min(Math.max(probability * 100, 2), 98.5);
+
+      // Actualizar Gauge
+      document.getElementById('pred-risk-percentage').innerText = `${riskPercent.toFixed(1)}%`;
+      
+      const circle = document.getElementById('gauge-circle');
+      // Total circumference is 2 * PI * 40 ≈ 251.2
+      const offset = 251.2 - (251.2 * (riskPercent / 100));
+      circle.style.strokeDashoffset = offset;
+
+      const badge = document.getElementById('pred-status-badge');
+      const recBox = document.getElementById('pred-recommendation-box');
+      const recText = document.getElementById('pred-recommendation-text');
+
+      if (riskPercent < 35) {
+        circle.style.stroke = "#22c55e"; // Green
+        badge.className = "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold";
+        badge.innerHTML = "🟢 RENDIMIENTO NORMAL / BAJO RIESGO";
+        recBox.className = "p-3.5 rounded-xl bg-slate-900 border border-emerald-500/30 text-xs space-y-1";
+        recText.innerText = "Los parámetros de humedad y temperatura se encuentran dentro de las zonas óptimas del cultivo. Mantener monitoreo regular.";
+      } else if (riskPercent < 65) {
+        circle.style.stroke = "#f59e0b"; // Yellow
+        badge.className = "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold";
+        badge.innerHTML = "🟡 RIESGO MODERADO / MONITOREAR";
+        recBox.className = "p-3.5 rounded-xl bg-slate-900 border border-amber-500/30 text-xs space-y-1";
+        recText.innerText = "Se detecta déficit hídrico temprano o temperatura elevada. Se aconseja programar riego de apoyo de 35 mm en las próximas 48 horas.";
+      } else {
+        circle.style.stroke = "#ef4444"; // Red
+        badge.className = "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold";
+        badge.innerHTML = "🔴 ALERTA CRÍTICA: RIESGO DE BAJO RENDIMIENTO";
+        recBox.className = "p-3.5 rounded-xl bg-slate-900 border border-red-500/30 text-xs space-y-1";
+        recText.innerText = "¡ALERTA PREVENTIVA! Estrés hídrico severo combinado con anomalía térmica. Aplicar de inmediato protocolo de rescate agronómico (riego por goteo intensivo y fertilizante foliar). Ahorro potencial: $1,850.00 USD en la parcela.";
+      }
+
+      // Render SHAP breakdown
+      const shapContainer = document.getElementById('shap-breakdown-list');
+      const factors = [
+        { name: "Déficit Hídrico del Suelo", val: Math.round((deficit / 65) * 45) },
+        { name: "Precipitación Acumulada", val: Math.round(precip < 200 ? ((200 - precip) / 140) * 40 : 5) },
+        { name: "Incidencia de Plagas", val: Math.round((plagas / 50) * 30) },
+        { name: "Temperatura de Floración", val: Math.round(temp > 26 ? ((temp - 26) / 12) * 25 : 5) }
+      ];
+
+      shapContainer.innerHTML = factors.map(f => `
+        <div>
+          <div class="flex justify-between text-[11px] text-slate-300">
+            <span>${f.name}</span>
+            <span class="font-mono ${f.val > 25 ? 'text-red-400' : 'text-slate-400'}">+${f.val}% riesgo</span>
+          </div>
+          <div class="w-full h-1 bg-slate-800 rounded-full overflow-hidden mt-0.5">
+            <div class="h-full ${f.val > 25 ? 'bg-red-500' : 'bg-indigo-500'} rounded-full" style="width: ${Math.min(f.val * 2, 100)}%"></div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function loadAgroPreset(type) {
+      if (type === 'healthy') {
+        document.getElementById('range-precipitacion').value = 350;
+        document.getElementById('range-temp').value = 23.5;
+        document.getElementById('range-deficit').value = 10;
+        document.getElementById('range-plagas').value = 2;
+        document.getElementById('range-dias').value = 60;
+      } else if (type === 'drought') {
+        document.getElementById('range-precipitacion').value = 140;
+        document.getElementById('range-temp').value = 31.0;
+        document.getElementById('range-deficit').value = 42;
+        document.getElementById('range-plagas').value = 12;
+        document.getElementById('range-dias').value = 75;
+      } else if (type === 'critical') {
+        document.getElementById('range-precipitacion').value = 85;
+        document.getElementById('range-temp').value = 35.5;
+        document.getElementById('range-deficit').value = 58;
+        document.getElementById('range-plagas').value = 38;
+        document.getElementById('range-dias').value = 85;
+      }
+      runXGBoostInference();
+    }
+
+    // ==============================================================
+    // 5. C# QUALITY & GOVERNANCE AUDITOR SIMULATION
+    // ==============================================================
+    let currentAuditCase = 'valid';
+
+    function selectAuditCase(key) {
+      currentAuditCase = key;
+      ['valid', 'leakage', 'nulls'].forEach(k => {
+        const btn = document.getElementById(`audit-btn-${k}`);
+        if (k === key) {
+          btn.classList.add('border-teal-500/50', 'bg-slate-850');
+          btn.classList.remove('border-slate-800');
+        } else {
+          btn.classList.remove('border-teal-500/50', 'bg-slate-850');
+          btn.classList.add('border-slate-800');
+        }
+      });
+    }
+
+    function runAuditExecution() {
+      const log = document.getElementById('audit-terminal-log');
+      const status = document.getElementById('audit-log-status');
+      status.innerText = "Ejecutando...";
+
+      log.innerText = "[INF] Inicializando motor C# AgroVerde.Quality...\n[INF] Conectando a DataWarehouse SQL Server mediante SqlBulkCopy...";
+
+      setTimeout(() => {
+        if (currentAuditCase === 'valid') {
+          status.innerText = "🟢 APROBADO (100% Conforme)";
+          log.innerText = `
+[INF] INICIO DE AUDITORÍA: Lote PARCELA-CICLO #9482
+[OK]  Dimensión 1 (Completitud): 10/10 atributos obligatorios presentes.
+[OK]  Dimensión 2 (Validez): Rango de precipitación [60, 450] mm verificado.
+[OK]  Dimensión 3 (Unicidad): Llave primaria 'id_parcela_ciclo' no duplicada.
+[OK]  Dimensión 4 (Consistencia): Fechas de siembra/cosecha cronológicas conformes.
+[OK]  Dimensión 5 (Exactitud): Validación cruzada con sensores de estación climática.
+[OK]  Dimensión 6 (Oportunidad): Registro ingresado dentro de la ventana de ciclo.
+[AUDIT] Target Leakage Check:
+  -> Variable 'rendimiento_ton_ha': PROHIBIDA (No detectada en predictores - OK)
+  -> Variable 'fecha_carga': Omitida - OK
+[GOB] Política GOB-03 (Consentimiento Legal): Verificado 100% de trazabilidad.
+[RESULTADO] Registro insertado en AgroVerdeDW.staging_analitico (Listo para ML).
+          `.trim();
+        } else if (currentAuditCase === 'leakage') {
+          status.innerText = "🔴 BLOQUEADO (Target Leakage)";
+          log.innerText = `
+[INF] INICIO DE AUDITORÍA: Lote PARCELA-CICLO #9483
+[SECURITY] ESCANEO DE FUGA DE INFORMACIÓN (TARGET LEAKAGE AUDIT):
+[CRITICAL FAIL] Se detectó atributo prohibido en la matriz de entrenamiento:
+  -> Predictor detectado: 'rendimiento_ton_ha' (Valor: 19.4)
+  -> Infracción: Uso de predictor directo de la variable objetivo 'rendimiento_bajo'.
+[RULE-SEC-01] PROHIBICIÓN ESTRICTA ACTIVADA.
+[ACTION] El registro ha sido RECHAZADO del pipeline de entrenamiento para evitar sobreajuste espurio.
+[RESULTADO] Inyección de fuga prevenida con éxito por el motor C#.
+          `.trim();
+        } else if (currentAuditCase === 'nulls') {
+          status.innerText = "🟡 AISLADO EN CUARENTENA";
+          log.innerText = `
+[INF] INICIO DE AUDITORÍA: Lote PARCELA-CICLO #9484
+[OK]  Dimensión 3 (Unicidad): Conforme.
+[FAIL] Dimensión 1 (Completitud): 
+  -> Campo 'precipitacion_acumulada_mm' = NULL
+  -> Campo 'tipo_suelo_textura' = EMPTY_STRING
+[REG-FAIL] El registro incumple el umbral mínimo institucional (95%).
+[ACTION] Aplicando Ciclo PHVA - Aislamiento Preventivo:
+  -> Registro desviado a: AgroVerdeDW.cuarentena_bloqueante
+  -> Motivo: Incompletitud severa de variables climatológicas clave.
+[RESULTADO] Aislado en Cuarentena sin borrado físico para auditoría agronómica.
+          `.trim();
+        }
+      }, 300);
+    }
+
+    // ==============================================================
+    // 6. ECOSYSTEM & SUBTAB SWITCHERS
+    // ==============================================================
+    function switchDemoEcosystem(eco) {
+      const walterContainer = document.getElementById('demo-walter-container');
+      const agroContainer = document.getElementById('demo-agroverde-container');
+      const btnWalter = document.getElementById('btn-tab-walter');
+      const btnAgro = document.getElementById('btn-tab-agroverde');
+
+      if (eco === 'walter') {
+        walterContainer.classList.remove('hidden');
+        agroContainer.classList.add('hidden');
+        btnWalter.className = "px-6 py-2.5 rounded-xl text-sm font-semibold bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 transition flex items-center gap-2";
+        btnAgro.className = "px-6 py-2.5 rounded-xl text-sm font-semibold text-slate-400 hover:text-white transition flex items-center gap-2";
+      } else {
+        walterContainer.classList.add('hidden');
+        agroContainer.classList.remove('hidden');
+        btnAgro.className = "px-6 py-2.5 rounded-xl text-sm font-semibold bg-emerald-600 text-white shadow-lg shadow-emerald-600/30 transition flex items-center gap-2";
+        btnWalter.className = "px-6 py-2.5 rounded-xl text-sm font-semibold text-slate-400 hover:text-white transition flex items-center gap-2";
+        runXGBoostInference();
+      }
+      lucide.createIcons();
+    }
+
+    function switchWalterSubTab(tab) {
+      ['pos', 'lotes', 'api'].forEach(t => {
+        const el = document.getElementById(`walter-sub-${t}`);
+        const btn = document.getElementById(`w-btn-${t}`);
+        if (t === tab) {
+          el.classList.remove('hidden');
+          btn.className = "px-4 py-2 rounded-lg bg-indigo-600 text-white transition flex items-center gap-1.5";
+        } else {
+          el.classList.add('hidden');
+          btn.className = "px-4 py-2 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5";
+        }
+      });
+      lucide.createIcons();
+    }
+
+    function switchAgroSubTab(tab) {
+      ['predictor', 'calidad'].forEach(t => {
+        const el = document.getElementById(`agro-sub-${t}`);
+        const btn = document.getElementById(`a-btn-${t}`);
+        if (t === tab) {
+          el.classList.remove('hidden');
+          btn.className = "px-4 py-2 rounded-lg bg-emerald-600 text-white transition flex items-center gap-1.5";
+        } else {
+          el.classList.add('hidden');
+          btn.className = "px-4 py-2 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5";
+        }
+      });
+      lucide.createIcons();
+    }
+
+    // Modal helpers
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    // Filter projects section
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white');
+        btn.classList.add('text-slate-400');
+      });
+
+      event.target.classList.add('bg-indigo-600', 'text-white');
+      event.target.classList.remove('text-slate-400');
+
+      cards.forEach(card => {
+        if (category === 'all') {
+          card.style.display = 'flex';
+        } else {
+          const cats = card.getAttribute('data-category').split(' ');
+          if (cats.includes(category)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    }
+
+    // Contact form submit
+    function handleContact(e) {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const msg = document.getElementById('contact-message').value;
+
+      const subject = encodeURIComponent(`Contacto de Portafolio - ${name}`);
+      const body = encodeURIComponent(`Nombre: ${name}\nCorreo: ${email}\n\nMensaje:\n${msg}`);
+      window.location.href = `mailto:Dark05studios@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    // Initialize all demos on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderPosProducts();
+      renderCart();
+      renderLotesTable();
+      selectApiEndpoint('getProductos');
+      runXGBoostInference();
+    });
+  </script>
+</body>
+</html>
